@@ -11,6 +11,5 @@ public interface LaptopRepository extends JpaRepository<Laptop, Long> {
 
     List<Laptop> findAllByOrderByIdAsc();
 
-    @Query("FROM Laptop where status = ?1 ORDER BY id ASC")
-    List<Laptop> findAll(boolean status);
+    List<Laptop> findAllAvailable(boolean status);
 }

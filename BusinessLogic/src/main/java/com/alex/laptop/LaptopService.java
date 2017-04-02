@@ -19,7 +19,7 @@ public class LaptopService {
 
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public List<Laptop> findAllAvailable() {
-        return repository.findAll(true);
+        return repository.findAllAvailable(true);
     }
 
 

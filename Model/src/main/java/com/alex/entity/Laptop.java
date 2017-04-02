@@ -10,6 +10,10 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "laptop")
+@NamedQueries({
+        @NamedQuery(name="Laptop.findAllAvailable", query="select t "
+                + "from Laptop t where t.status = ?1 ORDER BY t.id ASC"),
+})
 public class Laptop{
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
