@@ -10,8 +10,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -29,15 +27,11 @@ import java.io.IOException;
 @ComponentScan("com.alex")
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
-//    @Override
-//    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-//        final MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-//        final ObjectMapper objectMapper = new ObjectMapper();
-//        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-//        converter.setObjectMapper(objectMapper);
-//        converters.add(converter);
-//        super.configureMessageConverters(converters);
-//    }
+    @Autowired
+    public UserDetailsService userDetailsService;
+
+    @Autowired
+    private RequestMappingHandlerAdapter requestMappingHandlerAdapter;
 
     @Bean(name="multipartResolver")
     public CommonsMultipartResolver getResolver() throws IOException {
@@ -72,13 +66,6 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
         return messageSource;
     }
 
-    @Autowired
-    public UserDetailsService getUserDetailsService(){
-        return new UserDetailsServiceImpl();
-    }
-
-    @Autowired
-    private RequestMappingHandlerAdapter requestMappingHandlerAdapter;
 
     @PostConstruct
     public void init() {

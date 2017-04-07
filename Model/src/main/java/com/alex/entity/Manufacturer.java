@@ -70,9 +70,6 @@ public class Manufacturer {
 
     @Override
     public String toString() {
-        return "Manufacturer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return String.format("Manufacturer{id=%d, name='%s'}", id, name);
     }
 }

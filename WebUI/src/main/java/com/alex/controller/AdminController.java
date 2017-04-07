@@ -7,6 +7,7 @@ import com.alex.laptop.ManufacturerService;
 import com.alex.validator.FileValidator;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -29,14 +30,16 @@ import java.util.List;
 @SessionAttributes("laptop")
 public class AdminController {
 
-    @Autowired
     private LaptopService service;
-
-    @Autowired
     private ManufacturerService serviceMan;
+    private Validator fileValidator;
 
     @Autowired
-    private Validator fileValidator;
+    public AdminController(LaptopService service, ManufacturerService serviceMan, Validator fileValidator) {
+        this.service = service;
+        this.serviceMan = serviceMan;
+        this.fileValidator = fileValidator;
+    }
 
     private static String UPLOAD_LOCATION="C:/images/";
 
@@ -154,7 +157,7 @@ public class AdminController {
 
     @JsonView(View.Summary.class)
     @RequestMapping(value="/buy",method=RequestMethod.POST,
-            consumes = "application/json", produces = "application/json")
+            consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody Laptop buyLaptopAjax(@RequestBody Long id) {
         service.buyLaptop(id);
         return service.findLaptop(id);
@@ -162,7 +165,7 @@ public class AdminController {
 
     @JsonView(View.Summary.class)
     @RequestMapping(value="/add",method=RequestMethod.POST,
-            consumes = "application/json", produces = "application/json")
+            consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody Laptop addLaptopAjax(@RequestBody Long id) {
         service.addLaptop(id);
         return service.findLaptop(id);
@@ -172,9 +175,9 @@ public class AdminController {
     @RequestMapping("/test")
     @ResponseBody
     public Laptop findResource(){
-        if(true){
-            throw new RuntimeException("There was an error");
-        }
+//        if(true){
+//            throw new RuntimeException("There was an error");
+//        }
         return service.findLaptop(18L);
     }
 

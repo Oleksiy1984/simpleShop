@@ -13,9 +13,12 @@ import java.util.List;
 @Transactional
 public class LaptopService {
 
-    @Autowired
     private LaptopRepository repository;
 
+    @Autowired
+    public LaptopService(LaptopRepository repository) {
+        this.repository=repository;
+    }
 
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public List<Laptop> findAllAvailable() {

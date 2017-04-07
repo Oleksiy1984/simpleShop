@@ -16,11 +16,15 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
     private UserDetailsService userDetailsService;
+    private AuthenticationSuccessHandler mySimpleUrlAuthenticationSuccessHandler;
 
     @Autowired
-    private AuthenticationSuccessHandler mySimpleUrlAuthenticationSuccessHandler;
+    public SecurityConfig(UserDetailsService userDetailsService,
+                          AuthenticationSuccessHandler mySimpleUrlAuthenticationSuccessHandler) {
+        this.userDetailsService = userDetailsService;
+        this.mySimpleUrlAuthenticationSuccessHandler = mySimpleUrlAuthenticationSuccessHandler;
+    }
 
     @Autowired
     public void registerGlobalAuthentication(AuthenticationManagerBuilder auth) throws Exception {

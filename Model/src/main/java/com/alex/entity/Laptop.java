@@ -184,17 +184,9 @@ public class Laptop{
 
     @Override
     public String toString() {
-        return "Laptop{" +
-                "id=" + id +
-                ", ram=" + ram +
-                ", cpu='" + cpu + '\'' +
-                ", screen='" + screen + '\'' +
-                ", image='" + image + '\'' +
-                ", price=" + price +
-                ", status=" + status +
-                ", quantity=" + quantity +
-                ", manufacturer=" + manufacturer +
-                '}';
+        return String.format("Laptop{id=%d, ram=%d, cpu='%s', screen='%s', image='%s', " +
+                "price=%d, status=%s, quantity=%d, manufacturer=%s}",
+                id, ram, cpu, screen, image, price, status, quantity, manufacturer);
     }
 }
 

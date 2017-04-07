@@ -6,6 +6,7 @@ import com.alex.entity.View;
 import com.alex.laptop.LaptopService;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,12 @@ import org.springframework.web.bind.annotation.*;
 
 public class UserController {
 
+    private LaptopService service;
+
     @Autowired
-    LaptopService service;
+    public UserController(LaptopService service) {
+        this.service=service;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String start(Model model) {
@@ -34,7 +39,7 @@ public class UserController {
 
     @JsonView(View.Summary.class)
     @RequestMapping(value="/buy",method=RequestMethod.POST,
-            consumes = "application/json", produces = "application/json")
+            consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     Laptop buyLaptopAjax(@RequestBody Laptop laptop) {
         service.buyLaptop(laptop.getId());
@@ -43,7 +48,7 @@ public class UserController {
 
     @JsonView(View.Summary.class)
     @RequestMapping(value="/add",method=RequestMethod.POST,
-            consumes = "application/json", produces = "application/json")
+            consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody Laptop addLaptopAjax(@RequestBody Laptop laptop) {
         service.addLaptop(laptop.getId());
         return service.findLaptop(laptop.getId());
