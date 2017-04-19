@@ -11,12 +11,12 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "laptop")
 @NamedQueries({
-        @NamedQuery(name="Laptop.findAllAvailable", query="select t "
+        @NamedQuery(name = "Laptop.findAllAvailable", query = "select t "
                 + "from Laptop t where t.status = ?1 ORDER BY t.id ASC"),
 })
-public class Laptop{
+public class Laptop {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     @JsonView(View.Summary.class)
     private Long id;
@@ -24,7 +24,7 @@ public class Laptop{
 
     @Column(name = "ram", nullable = false)
     @NotNull(message = "You must provide a RAM")
-    @Digits(fraction = 0, integer = 5, message ="You must provide only digit")
+    @Digits(fraction = 0, integer = 5, message = "You must provide only digit")
     @JsonView(View.Summary.class)
     private Integer ram;
 
@@ -55,7 +55,7 @@ public class Laptop{
 
     @Column(name = "quantity", nullable = false)
     @NotNull(message = "You must provide a quantity")
-    @Digits(fraction = 0, integer = 10, message ="You must provide only digit")
+    @Digits(fraction = 0, integer = 10, message = "You must provide only digit")
     @JsonView(View.Summary.class)
     private Integer quantity;
 
@@ -185,7 +185,7 @@ public class Laptop{
     @Override
     public String toString() {
         return String.format("Laptop{id=%d, ram=%d, cpu='%s', screen='%s', image='%s', " +
-                "price=%d, status=%s, quantity=%d, manufacturer=%s}",
+                        "price=%d, status=%s, quantity=%d, manufacturer=%s}",
                 id, ram, cpu, screen, image, price, status, quantity, manufacturer);
     }
 }

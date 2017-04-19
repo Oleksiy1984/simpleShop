@@ -5,13 +5,14 @@ import javax.persistence.Converter;
 
 @Converter
 public class DefaultConverter implements AttributeConverter<String, String> {
+
     @Override
     public String convertToDatabaseColumn(String attribute) {
-        if(attribute.equals("")){
+        if (attribute.equals("")) {
             return "/resources/image/default.jpg";
+        } else {
+            return attribute;
         }
-        else  {return attribute;}
-
     }
 
     @Override

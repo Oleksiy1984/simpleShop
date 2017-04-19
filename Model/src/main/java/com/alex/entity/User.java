@@ -3,7 +3,6 @@ package com.alex.entity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -39,7 +38,6 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-
     public String getUserName() {
         return userName;
     }
@@ -51,12 +49,11 @@ public class User implements UserDetails {
     public String getPassword() {
         return password;
     }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return AuthorityUtils.createAuthorityList(this.role);
     }
-
-
 
     @Override
     public String getUsername() {
@@ -91,9 +88,7 @@ public class User implements UserDetails {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         User user = (User) o;
-
         return id.equals(user.id);
     }
 

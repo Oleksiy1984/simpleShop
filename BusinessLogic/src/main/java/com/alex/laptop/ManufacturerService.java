@@ -16,17 +16,17 @@ public class ManufacturerService {
     @Autowired
     private ManufacturerRepository repository;
 
-    public List<String> findAll(){
-        List<String> list =new ArrayList<>();
-        List<Manufacturer> manufacturers=repository.findAllByOrderByIdAsc();
-        for (Manufacturer manufacturer:manufacturers
-             ) {
+    public List<String> findAll() {
+        List<String> list = new ArrayList<>();
+        List<Manufacturer> manufacturers = repository.findAllByOrderByIdAsc();
+        for (Manufacturer manufacturer : manufacturers
+                ) {
             list.add(manufacturer.getName());
         }
         return list;
     }
 
-    public Manufacturer findByName(String name){
+    public Manufacturer findByName(String name) {
         return repository.findByName(name);
     }
 }

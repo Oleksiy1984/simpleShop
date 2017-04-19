@@ -7,7 +7,6 @@ import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -32,13 +31,10 @@ public class MySimpleUrlAuthenticationSuccessHandler
     protected void handle(HttpServletRequest request,
                           HttpServletResponse response, Authentication authentication)
             throws IOException {
-
         String targetUrl = determineTargetUrl(authentication);
-
         if (response.isCommitted()) {
             return;
         }
-
         redirectStrategy.sendRedirect(request, response, targetUrl);
     }
 
@@ -56,7 +52,6 @@ public class MySimpleUrlAuthenticationSuccessHandler
                 break;
             }
         }
-
         if (isUser) {
             return "/user";
         } else if (isAdmin) {
@@ -77,6 +72,7 @@ public class MySimpleUrlAuthenticationSuccessHandler
     public void setRedirectStrategy(RedirectStrategy redirectStrategy) {
         this.redirectStrategy = redirectStrategy;
     }
+
     protected RedirectStrategy getRedirectStrategy() {
         return redirectStrategy;
     }

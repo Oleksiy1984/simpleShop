@@ -28,8 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void registerGlobalAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .userDetailsService(userDetailsService);
+        auth.userDetailsService(userDetailsService);
     }
 
     @Override
@@ -44,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/resources/**", "/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-        .formLogin()
+                .formLogin()
                 .loginPage("/")
                 .loginProcessingUrl("/j_spring_security_check")
                 .failureUrl("/?error=true")

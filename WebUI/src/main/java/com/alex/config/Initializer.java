@@ -1,6 +1,5 @@
 package com.alex.config;
 
-import com.alex.Config.JPAConfig;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;

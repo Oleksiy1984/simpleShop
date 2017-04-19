@@ -16,9 +16,8 @@ public class LoggerAspect {
         String method = joinPoint.getSignature().getName();
         log.info("Called " + method + " on " + joinPoint.getTarget());
         Object[] signatureArgs = joinPoint.getArgs();
-        for (Object signatureArg: signatureArgs) {
+        for (Object signatureArg : signatureArgs) {
             log.info("with arg " + signatureArg);
         }
-
     }
 }

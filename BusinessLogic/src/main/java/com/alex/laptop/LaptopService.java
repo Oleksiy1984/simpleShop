@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Service
@@ -17,7 +16,7 @@ public class LaptopService {
 
     @Autowired
     public LaptopService(LaptopRepository repository) {
-        this.repository=repository;
+        this.repository = repository;
     }
 
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
@@ -25,18 +24,17 @@ public class LaptopService {
         return repository.findAllAvailable(true);
     }
 
-
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public List<Laptop> findAll() {
         return repository.findAllByOrderByIdAsc();
     }
 
     public void buyLaptop(Long id) {
-        Laptop laptop=repository.findOne(id);
-        if(laptop.getQuantity()>0){
+        Laptop laptop = repository.findOne(id);
+        if (laptop.getQuantity() > 0) {
             int quantity = laptop.getQuantity();
             laptop.setQuantity(quantity - 1);
-            if(quantity==1){
+            if (quantity == 1) {
                 laptop.setStatus(false);
             }
         }
@@ -60,10 +58,8 @@ public class LaptopService {
         repository.delete(id);
     }
 
-
-    public Laptop findLaptop(Long id){
+    public Laptop findLaptop(Long id) {
         return repository.findOne(id);
     }
-
 }
 

@@ -1,4 +1,4 @@
-package com.alex.Config;
+package com.alex.config;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -57,17 +57,14 @@ public class JPAConfig {
     @Profile("test")
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryForTest(
             DataSource dataSourceForTest, JpaVendorAdapter jpaVendorAdapterForTest) {
-
         Properties props = new Properties();
         props.setProperty("hibernate.format_sql", String.valueOf(true));
-        //props.setProperty("hibernate.hbm2ddl.auto", String.valueOf(""));
         LocalContainerEntityManagerFactoryBean emf =
                 new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(dataSourceForTest);
         emf.setPackagesToScan("com.alex.entity");
         emf.setJpaVendorAdapter(jpaVendorAdapterForTest);
         emf.setJpaProperties(props);
-
         return emf;
     }
 
@@ -82,8 +79,6 @@ public class JPAConfig {
     public BeanPostProcessor persistenceTranslationForTest() {
         return new PersistenceExceptionTranslationPostProcessor();
     }
-
-
 
     @Bean
     public DataSource dataSource() {
@@ -108,17 +103,14 @@ public class JPAConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(
             DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
-
         Properties props = new Properties();
         props.setProperty("hibernate.format_sql", String.valueOf(false));
-
         LocalContainerEntityManagerFactoryBean emf =
                 new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(dataSource);
         emf.setPackagesToScan("com.alex.entity");
         emf.setJpaVendorAdapter(jpaVendorAdapter);
         emf.setJpaProperties(props);
-
         return emf;
     }
 

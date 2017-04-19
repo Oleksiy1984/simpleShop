@@ -50,9 +50,7 @@ public class Manufacturer {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Manufacturer that = (Manufacturer) o;
-
         return id.equals(that.id);
     }
 

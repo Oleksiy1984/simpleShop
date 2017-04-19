@@ -14,7 +14,7 @@ public class FileBucket {
         this.id = id;
     }
 
-    MultipartFile file;
+    private MultipartFile file;
 
     public MultipartFile getFile() {
         return file;
